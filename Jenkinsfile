@@ -11,7 +11,7 @@ pipeline {
         		 steps {
 				parallel(
 					docker: { sh "docker -v" },		
-					jenkins: { sh "jenkins -v" }		
+					os: { sh "uname -a" }		
 				)
          		 }
    		 }
