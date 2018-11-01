@@ -5,6 +5,7 @@ pipeline {
           DEPLOY_URL = "https://54.196.235.168/"
           COMPOSE_FILE = "docker-compose.yml"
           DEPLOY_STACK_NAME = "hello"
+          STACK_PREFIX = "web"
         }
 
          stages{
@@ -26,7 +27,7 @@ pipeline {
                  stage('Stack Deploy') {
                           steps {
                               sh 'docker stack deploy -c ${env.COMPOSE_FILE} ${env.DEPLOY_STACK_NAME}'
-                              sh 'docker service ps ${env.DEPLOY_STACK_NAME}"_web"'
+                              sh 'docker service ps ${env.DEPLOY_STACK_NAME}${env.STACK_PREFIX}'
                               sh 'docker container ls -q'
 
                           }
@@ -37,7 +38,7 @@ pipeline {
 
         post {
                 always {
-                        sh "docker-compose down || true"
+                        sh "echo Done!"
 
                  }
         }
