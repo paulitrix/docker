@@ -26,7 +26,7 @@ pipeline {
 
                  stage('Stack Deploy') {
                           steps {
-                              sh 'docker stack deploy -c ${env.COMPOSE_FILE} ${env.DEPLOY_STACK_NAME}'
+                              sh 'docker stack deploy ${env.DEPLOY_STACK_NAME} -c ${env.COMPOSE_FILE}'
                               sh 'docker service ps hello_web'
                               sh 'docker container ls -q'
 
