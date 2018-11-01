@@ -16,10 +16,14 @@ pipeline {
          		 }
    		 }
 
-		stage ('Deploy App') {
-         	 		 sh 'docker stack deploy --compose-file docker-compose.yml hello'
-   		 }      
 
    	 }
+
+
+	post {
+      		always {
+         	 	sh 'docker stack deploy --compose-file docker-compose.yml hello'
+     		 }
+	}
 
 }
