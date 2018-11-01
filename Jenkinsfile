@@ -17,9 +17,7 @@ pipeline {
    		 }
 
 		stage ('Deploy App') {
-       			 docker.withServer('http://54.196.235.168') {
          	 		 sh 'docker stack deploy --compose-file docker-compose.yml hello'
-       			 }
    		 }      
 
    	 }
