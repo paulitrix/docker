@@ -22,7 +22,9 @@ pipeline {
 
 	post {
       		always {
-         	 	sh 'docker stack deploy --compose-file docker-compose.yml hello'
+         	 	sh 'docker stack deploy -c  docker-compose.yml hello'
+         	 	sh 'docker service ps  hello_web'
+			sh 'docker container ls -q'
      		 }
 	}
 
